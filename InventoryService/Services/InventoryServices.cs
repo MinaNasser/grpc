@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace InventoryService.Services
 {
-    public class InventoryService : Inventory.InventoryBase
+    public class InventoryServices : Inventory.InventoryBase
     {
         private readonly Dictionary<int, int> _stock = new()
         {
@@ -13,9 +13,9 @@ namespace InventoryService.Services
             { 3, 30 }
         };
 
-        private readonly ILogger<InventoryService> _logger; 
+        private readonly ILogger<InventoryServices> _logger; 
 
-        public InventoryService(ILogger<InventoryService> logger)
+        public InventoryServices(ILogger<InventoryServices> logger)
         {
             _logger = logger;
         }

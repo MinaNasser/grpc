@@ -17,5 +17,15 @@ namespace Lab1.Repositories
         {
             _products.Add(product);
         }
+        public bool UpdateStock(int productId, int quantity)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == productId);
+            if (product != null && product.Stock >= quantity)
+            {
+                product.Stock -= quantity; 
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -5,11 +5,11 @@ using static PaymentServiceGrpc.Protos.Payment;
 
 namespace PaymentService.Services
 {
-    public class PaymentService : PaymentBase
+    public class PaymentServices : PaymentBase
     {
-        private readonly ILogger<PaymentService> _logger;
+        private readonly ILogger<PaymentServices> _logger;
 
-        public PaymentService(ILogger<PaymentService> logger)
+        public PaymentServices(ILogger<PaymentServices> logger)
         {
             _logger = logger;
         }
