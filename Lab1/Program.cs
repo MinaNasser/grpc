@@ -1,3 +1,5 @@
+using Order;
+
 namespace Lab1
 {
     public class Program
@@ -34,6 +36,8 @@ namespace Lab1
                           .AllowAnyHeader();
                 });
             });
+            builder.Services.AddGrpc();
+            builder.Services.AddGrpcReflection();
 
             var app = builder.Build();
 
@@ -46,6 +50,12 @@ namespace Lab1
 
             // ≈÷«›… CORS ≈·Ï «· ÿ»Ìﬁ
             app.UseCors("AllowAll");
+
+            app.UseRouting();
+            app.UseGrpcWeb();  //  √ﬂœ „‰ √‰ Â–Â «·”ÿ— »⁄œ UseRouting()
+
+            //  „ﬂÌ‰ gRPC Services
+            app.MapGrpcService<OrderGrpcService>().EnableGrpcWeb();
 
             app.UseAuthorization();
             app.MapControllers();

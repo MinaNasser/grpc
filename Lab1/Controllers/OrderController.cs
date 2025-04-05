@@ -4,7 +4,7 @@ using Lab1.Models;
 using Lab1.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-
+using Lab1.Models;
 namespace Lab1.Controllers
 {
     [Route("api/[controller]")]
@@ -50,7 +50,7 @@ namespace Lab1.Controllers
 
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateOrder([FromBody] Order order)
+        public async Task<IActionResult> CreateOrder([FromBody] Orderent order)
         {
             double totalAmount = 0;
             foreach (var item in order.Items)

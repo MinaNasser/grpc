@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package Order;
+
+service OrderService {
+  rpc CreateOrder (OrderRequest) returns (OrderResponse);
+}
+
+message OrderRequest {
+  string customerName = 1;
+  string customerEmail = 2;
+  string customerPhone = 3;
+  string paymentMethod = 4;
+  repeated OrderItemRequest items = 5;
+}
+
+message OrderItemRequest {
+  int32 productId = 1;
+  int32 quantity = 2;
+}
+
+message OrderResponse {
+  string message = 1;
+  bool success = 2;
+  double totalAmount = 3;
+}
