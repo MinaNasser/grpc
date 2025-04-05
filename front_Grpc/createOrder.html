@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+    <link rel="stylesheet" href="colors.css">
+    <link rel="stylesheet" href="components.css">
+    <style>
+        /* تنسيق النموذج */
+        .order-form {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .order-form h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: .5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: .6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        /* تنسيق جدول المنتجات */
+        .product-list {
+            margin-top: 2rem;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .product-table th, .product-table td {
+            padding: .75rem;
+            border: 1px solid #f70909;
+            text-align: center;
+        }
+
+        .product-table th {
+            background-color: var(--primary-bg);
+            color: rgb(201, 4, 4);
+        }
+
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .add-product-btn {
+            margin-top: 1rem;
+        }
+
+        .submit-btn {
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .btn {
+            cursor: pointer;
+            padding: .5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-form">
+        <h2>Create New Order</h2>
+
+        <!-- بيانات العميل -->
+        <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" id="customerName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customerPhone">Phone Number</label>
+            <input type="text" id="customerPhone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customerEmail">Email (optional)</label>
+            <input type="email" id="customerEmail">
+        </div>
+
+        <!-- إضافة منتج -->
+        <div class="product-list">
+            <h3>Add Products</h3>
+
+            <div class="form-group">
+                <label for="productName">Product</label>
+                <input type="text" id="productName">
+            </div>
+
+            <div class="form-group">
+                <label for="productQty">Quantity</label>
+                <input type="number" id="productQty" value="1" min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Price</label>
+                <input type="number" id="productPrice" step="0.01">
+            </div>
+
+            <button type="button" class="btn add-product-btn" onclick="addProduct()">Add Product</button>
+
+            <!-- جدول المنتجات المضافة -->
+            <table class="product-table" id="productTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- يتم ملؤها من خلال JavaScript -->
+                </tbody>
+            </table>
+
+            <div class="total" id="orderTotal">Total: $0.00</div>
+        </div>
+
+        <!-- طريقة الدفع -->
+        <div class="form-group">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod">
+                <option value="cash">Cash</option>
+                <option value="card">Card</option>
+                <option value="points">Points</option>
+            </select>
+        </div>
+
+        <!-- زر الإنشاء -->
+        <button class="btn submit-btn" onclick="submitOrder()">Create Order</button>
+    </div>
+
+    <script src="create-order.js"></script>
+
+
+</body>
+</html>

@@ -66,6 +66,7 @@ namespace Lab1.Controllers
                 {
                     return BadRequest(new { Message = $"Product with ID {item.ProductId} is out of stock!" });
                 }
+
                 var product = _productRepository.GetById(item.ProductId);
                 if (product != null)
                 {
@@ -78,6 +79,7 @@ namespace Lab1.Controllers
                     }
                 }
             }
+
             order.TotalAmount = totalAmount;
             order.CreatedAt = DateTime.UtcNow;
 
@@ -85,5 +87,41 @@ namespace Lab1.Controllers
 
             return CreatedAtAction(nameof(GetProducts), new { id = order.Id }, order);
         }
+
+        //public async Task<IActionResult> CreateOrder([FromBody] Order order)
+        //{
+        //    double totalAmount = 0;
+        //    foreach (var item in order.Items)
+        //    {
+        //        var stockRequest = new StockRequest
+        //        {
+        //            ProductId = item.ProductId,
+        //            Quantity = item.Quantity
+        //        };
+
+        //        var stockResponse = await _inventoryClient.CheckStockAsync(stockRequest);
+        //        if (!stockResponse.IsAvailable)
+        //        {
+        //            return BadRequest(new { Message = $"Product with ID {item.ProductId} is out of stock!" });
+        //        }
+        //        var product = _productRepository.GetById(item.ProductId);
+        //        if (product != null)
+        //        {
+        //            totalAmount += product.Price * item.Quantity;
+
+        //            var isUpdated = _productRepository.UpdateStock(item.ProductId, item.Quantity);
+        //            if (!isUpdated)
+        //            {
+        //                return BadRequest(new { Message = $"Failed to update stock for product {item.ProductId}" });
+        //            }
+        //        }
+        //    }
+        //    order.TotalAmount = totalAmount;
+        //    order.CreatedAt = DateTime.UtcNow;
+
+        //    _orderRepository.Add(order);
+
+        //    return CreatedAtAction(nameof(GetProducts), new { id = order.Id }, order);
+        //}
     }
 }
