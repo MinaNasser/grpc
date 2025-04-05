@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Order;
 
 namespace Lab1
@@ -38,7 +39,20 @@ namespace Lab1
             });
             builder.Services.AddGrpc();
             builder.Services.AddGrpcReflection();
-
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.ListenLocalhost(7160, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                });
+            });
+            //builder.WebHost.ConfigureKestrel(options =>
+            //{
+            //    options.ListenLocalhost(7161, listenOptions =>
+            //    {
+            //        listenOptions.Protocols = HttpProtocols.Http2;
+            //    });
+            //});
             var app = builder.Build();
 
             //  яжнд «б№ HTTP request pipeline
